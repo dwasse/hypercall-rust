@@ -1,0 +1,31 @@
+[hypercall]
+api_url = "https://api.hypercall.xyz"
+chain_id = 999
+account = "0x0000000000000000000000000000000000000001"
+poll_interval_ms = 1000
+
+[liquidation]
+enabled = true
+mode = "standard_margin_only"
+assume_penalty_profitability = true
+min_maintenance_buffer_bps = 500
+max_bid_usdc = "25000"
+max_accounts_per_cycle = 1
+dry_run = true
+
+[hedge]
+enabled = true
+venue = "hyperliquid"
+taker_only = true
+max_slippage_bps = 75
+delta_band_usd = "1000"
+min_order_notional_usdc = "25"
+max_order_notional_usdc = "10000"
+
+[keys.hypercall]
+kind = "plaintext"
+private_key_env = "HYPERCALL_LIQUIDATOR_PRIVATE_KEY"
+
+[keys.hyperliquid]
+kind = "plaintext"
+private_key_env = "HYPERLIQUID_LIQUIDATOR_PRIVATE_KEY"

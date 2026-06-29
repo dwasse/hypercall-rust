@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = [
+    "hypercall-ws-protocol",
+    "hypercall-sdk-types",
+    "hypercall-client",
+    "hypercall-hyperliquid",
+    "hypercall-liquidator",
+]
+

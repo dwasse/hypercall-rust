@@ -1,0 +1,30 @@
+[package]
+name = "hypercall-sdk-types"
+version = "0.1.0"
+edition = "2021"
+description = "Public SDK types for Hypercall clients"
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/hypercall-public"
+documentation = "https://docs.rs/hypercall-sdk-types"
+keywords = ["hypercall", "trading", "options", "sdk"]
+categories = ["api-bindings", "data-structures"]
+include = ["Cargo.toml", "README.md", "src/**"]
+
+[features]
+default = []
+test-utils = []
+
+[dependencies]
+alloy = { version = "1.0", default-features = false }
+bitflags = "2"
+chrono = { version = "0.4", features = ["serde"] }
+rust_decimal = { version = "1.39", features = ["serde", "serde-with-str"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sonic-rs = "0.5"
+tracing = "0.1"
+uuid = { version = "1", features = ["serde"] }
+
+[dev-dependencies]
+rust_decimal_macros = "1.39"

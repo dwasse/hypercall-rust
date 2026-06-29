@@ -1,0 +1,54 @@
+[package]
+name = "hypercall-client"
+version = "0.1.0"
+edition = "2021"
+description = "Client library for interacting with Hypercall trading platform"
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/hypercall-public"
+documentation = "https://docs.rs/hypercall-client"
+keywords = ["hypercall", "trading", "options", "sdk"]
+categories = ["api-bindings", "web-programming::websocket"]
+include = ["Cargo.toml", "README.md", "src/**"]
+
+[features]
+default = ["alloy-rustls"]
+alloy-rustls = ["alloy/reqwest-rustls-tls", "reqwest/rustls-tls"]
+alloy-native-tls = ["alloy/reqwest-native-tls", "reqwest/native-tls"]
+kms = ["alloy/signer-aws"]
+test-utils = []
+
+[dependencies]
+rust_decimal = { version = "1.39", features = ["serde-with-str"] }
+# Shared types
+hypercall-sdk-types = { path = "../hypercall-sdk-types", version = "0.1.0" }
+hypercall-ws-protocol = { path = "../hypercall-ws-protocol", version = "0.1.0" }
+
+# Alloy for signing and wallet operations
+alloy = { version = "1.0", default-features = false, features = ["contract", "provider-http", "network", "signer-local", "eip712", "reqwest"] }
+
+# HTTP client
+reqwest = { version = "0.11", default-features = false, features = ["json"] }
+
+# Async runtime
+tokio = { version = "1", features = ["sync", "time"] }
+
+# WebSocket
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sonic-rs = "0.5"
+
+# Utilities
+hex = "0.4"
+tracing = "0.1"
+sha3 = "0.10"
+uuid = { version = "1", features = ["v7"] }
+
+[dev-dependencies]
+hypercall-sdk-types = { path = "../hypercall-sdk-types", version = "0.1.0", features = ["test-utils"] }
+tokio = { version = "1", features = ["full"] }
+rust_decimal_macros = "1.35"
